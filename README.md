@@ -1,4 +1,4 @@
-# Cocos2d_JS_Tic Tac Toe
+# Cocos2d-X Javascript Tic Tac Toe
 
 This project is a simple Tic Tac Toe created with the Cocos2d-x Javascript framework.
 
