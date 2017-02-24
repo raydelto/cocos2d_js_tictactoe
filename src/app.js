@@ -1,4 +1,3 @@
-
 var TicTacToeLayer = cc.LayerColor.extend({
     board:null,
     size:null,
@@ -19,19 +18,16 @@ var TicTacToeLayer = cc.LayerColor.extend({
     showWinner: function(){
         var winner = this.verifyWinner();
         if(winner === -1 && this.verifyTie()){
-            cc.log('Tie');
             this.endGameWithText('Tie');
             this.gameOver = true;
             return;
         }
         switch(winner){
             case 0:
-                cc.log('O won the match');
                 this.endGameWithText('O won the match');
                 this.gameOver = true;
                 break;
             case 1:
-                cc.log('X won the match');
                 this.endGameWithText('X won the match');
                 this.gameOver = true;
                 break;
@@ -109,7 +105,6 @@ var TicTacToeLayer = cc.LayerColor.extend({
     handleTouch:function(touch, event){
         var point = touch.getLocation();
         var self = event.getCurrentTarget();
-        cc.log(point);
         var cell = self.getCell(point);
         if(!self.gameOver && self.boardData[cell.i][cell.j] === -1){
             self.boardData[cell.i][cell.j] = self.xIsPlaying ? 1 : 0;
@@ -121,21 +116,17 @@ var TicTacToeLayer = cc.LayerColor.extend({
         for(var i = 2 ; i >= 0 ; i--){
             for(var j = 0 ; j < 3 ; j++){
                 if(point.x <= this.cellLocation[i][j]['x'] && point.y <= this.cellLocation[i][j]['y'] ){
-                    cc.log("i="+i+", j="+j);
                     return {i:i, j:j, x:this.cellLocation[i][j]['x'], y:this.cellLocation[i][j]['y']};
                 }
             }                  
         }
-        cc.log('Cell not found, point: ' + point);
-        return null;
-        
+        return null;        
     },
     drawPlay:function (point){
         if(point === null){
             return null;
         }
         point.x = point.x - 113;
-        cc.log('drawPlay');
         var player = new cc.Sprite(this.xIsPlaying ? res.x : res.o);
         player.setAnchorPoint(0,1);
         player.setPosition(point);
